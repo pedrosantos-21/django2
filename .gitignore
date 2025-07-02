@@ -1,0 +1,32 @@
+# Ignorar ambiente virtual
+/venv/
+/.venv/
+
+# Ignorar arquivos Python
+__pycache__/
+*.pyc
+*.log
+.pytest_cache/
+.mypy_cache/
+
+# Ignorar arquivos de banco de dados SQLite (se você usa localmente, mas Docker usa MySQL)
+/db.sqlite3
+
+# Ignorar arquivos de variáveis de ambiente (contém senhas/chaves secretas)
+.env
+.env.*
+
+# Ignorar diretórios específicos do IDE
+/.vscode/
+.idea/
+
+# Ignorar arquivos de upload de mídia (se houver, e não forem versionados)
+/media/
+
+# Ignorar Docker volumes/caches/etc. (pastas que Docker pode criar automaticamente)
+/.docker/
+/build/
+
+# Ignorar arquivos de sistema operacional
+.DS_Store
+Thumbs.db

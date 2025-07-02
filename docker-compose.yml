@@ -1,0 +1,34 @@
+version: '3.8' #Versão de sintaxe do Docker Compose
+
+services:
+  web: # Serviço para aplicação Django
+    build: . # Constroi a imagem a partir do Dockerfile no diretório atual
+   # image: django2-web:latest
+    command: python manage.py runserver 0.0.0.0:8000 #comando para iniciar o servidor Django
+    volumes:
+      - .:/app # Monta o diretório atual do Host para /app no contêiner
+    ports:
+      - "8000:8000" # Mapeia a porta 8000 do host para a porta 8000 do contêiner
+    depends_on:
+      - db # Garante que o serviço 'db' (MySQL) seja iniciado antes de web
+    environment: # Variáveis de ambiente para o Django se conectar ao banco de dados
+      - DATABASE_ENGINE=django.db.backends.mysql
+      - DATABASE_NAME=mydjangoapp
+      - DATABASE_USER=root
+      - DATABASE_PASSWORD=admin@1234
+      - DATABASE_HOST=db
+      - DATABASE_PORT=3306
+
+  db: # Serviço para o banco de dados MySQL
+    image: mysql:8.0 # Usa a imagem oficial do MySQL 8.0
+    environment: # Variáveis de ambiente para configuração do MySQL
+      MYSQL_DATABASE: mydjangoapp  
+      MYSQL_ROOT_PASSWORD: admin@1234 # Senha do usuário root
+    ports:
+      - "3306:3306" # Mapeia a porta 3306 do host para a porta 3306 do contêiner (opcional, para acessar o DB de fora do contêiner)
+    volumes:
+      - db_data:/var/lib/mysql # Persistência de dados do MySQL em um volume nomeado
+    command: --default-authentication-plugin=mysql_native_password # Configuração do plugin de autenticação
+
+volumes:
+  db_data: # Volume nomeado para persistência de dados do MySQL  
