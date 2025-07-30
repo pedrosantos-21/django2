@@ -19,16 +19,11 @@ def contato(request):
                     #serão processados e passado para a variável form.cleaned_data.
     
     if str(request.method) == 'POST'  and form.is_valid():
-        nome = form.cleaned_data['nome']
-        email = form.cleaned_data['email']
-        mensagem = form.cleaned_data['mensagem']
-        assunto = form.cleaned_data['assunto']
-        
-        print(f'Nome: {nome}, Email: {email}, Mensagem: {mensagem}, Assunto: {assunto} - Enviado com sucesso!')
-        
-        #messages -> é um recurso do Django para exibir mensagens ao usuário
-        messages.success(request, 'Mensagem enviada com sucesso!')
-        form = ContatoForm()  # Reseta o formulário após o envio
+       form.send_mail()
+      
+       #messages -> é um recurso do Django para exibir mensagens ao usuário
+       messages.success(request, 'Mensagem enviada com sucesso!')
+       form = ContatoForm()  # Reseta o formulário após o envio
     else:
         messages.error(request, 'Erro ao enviar a mensagem. Por favor, tente novamente.')
     context = {
