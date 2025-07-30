@@ -19,6 +19,8 @@ def contato(request):
                     #serão processados e passado para a variável form.cleaned_data.
     
     if str(request.method) == 'POST'  and form.is_valid():
+        # Se o formulário for válido, chama o método send_mail para enviar o e-mail
+        # com os dados do formulário.
        form.send_mail()
       
        #messages -> é um recurso do Django para exibir mensagens ao usuário

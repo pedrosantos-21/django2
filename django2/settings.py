@@ -139,6 +139,7 @@ STATIC_URL = 'static/'
 #EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'  # Para desenvolvimento,  exibir e-mails no console
 # Para produção, descomente a linha abaixo e configure o backend SMTP
 
+#Aqui estamos simulando o envio de e-mails, para que os e-mails sejam exibidos no console.
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 """
 EMAIL_PORT = 587
@@ -146,7 +147,7 @@ EMAIL_USE_TLS = True -> "Criptografia TLS"
 EMAIL_HOST_USER = no-reply@seudominio.com.br'
 EMAIL_HOST = 'localhost'
 EMAIL_HOST_PASSWORD = 'sua_senha'
-EMAIL_FROM = '
+
 """
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
