@@ -9,4 +9,5 @@ Este é um projeto Django configurado para rodar em contêineres Docker, utiliza
 * **MySQL:** 8.0
 * **Docker:** Para orquestração de contêineres
 * **Git:** Para controle de versão
-* **VS Code:** Ambiente de desenvolvimento
+* **VS Code:** Ambiente de desenvolvimento 
+    

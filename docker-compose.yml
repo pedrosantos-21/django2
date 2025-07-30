@@ -1,7 +1,7 @@
-version: '3.8' #Versão de sintaxe do Docker Compose
+#version: '3.8' #Versão de sintaxe do Docker Compose
 
 services:
-  web: # Serviço para aplicação Django
+  web: # Serviço para aplicação Django(web, foi o nome escolhido para o contêiner)
     build: . # Constroi a imagem a partir do Dockerfile no diretório atual
    # image: django2-web:latest
     command: python manage.py runserver 0.0.0.0:8000 #comando para iniciar o servidor Django
