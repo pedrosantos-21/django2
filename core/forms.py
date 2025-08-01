@@ -1,6 +1,8 @@
 from django import forms # do django importamos forms
 from django.core.mail import EmailMessage # do django importamos a classe : EmailMessage
 
+from .models import Produto
+
 class ContatoForm(forms.Form): #Classe forms extende de forms.Form
     nome = forms.CharField(max_length=100, label='Nome') #Campo de texto
     email = forms.EmailField(label='Email') #Campo de email
@@ -26,3 +28,18 @@ class ContatoForm(forms.Form): #Classe forms extende de forms.Form
         )
         #metodo para enviar o e-mail
         mail.send()
+        
+        
+# Essa classe é um ModelForm que estende de forms.ModelForm
+# Ela é usada para criar um formulário baseado no modelo Produto.
+#Por isso o nome da classe é ProdutoModelForm.
+class ProdutoModelForm(forms.ModelForm):
+
+    #Classe meta. -> Define os metadados do formulário.
+    # Especifica o modelo e os campos que serão incluídos no formulário.
+    class Meta:
+        model = Produto
+        fields = ['nome', 'descricao', 'preco', 'estoque', 'imagem']
+        
+
+        

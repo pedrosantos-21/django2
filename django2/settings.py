@@ -130,6 +130,11 @@ USE_TZ = True
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles') 
 STATIC_URL = 'static/'
 
+#Utilizamos o MEDIA_URL e MEDIA_ROOT para gerenciar arquivos de mídia (como imagens) enviados pelos usuários.
+#Dssa forma podemos acessar os arquivos de mídia através da URL definida em MEDIA_URL e armazená-los no diretório especificado em MEDIA_ROOT.
+MEDIA_URL = 'media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media') 
+
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
 
