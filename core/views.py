@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.contrib import messages
 # Import the ContatoForm from core.forms
 
@@ -38,22 +38,22 @@ def contato(request):
     return render(request, 'contato.html', context)
 
 def produto(request):
+    if not request.user.is_authenticated:
+        return redirect('index')
     if request.method == 'POST':
         form = ProdutoModelForm(request.POST, request.FILES)
         if form.is_valid():      
-            
             form.save()  # Salva o produto no banco de dados
-                        
             messages.success(request,'Produto cadastrado com sucesso!')
             form = ProdutoModelForm()
         else:
             messages.error(request, 'Erro ao cadastrar o produto. Verifique os dados e tente novamente.')
     else:
         form = ProdutoModelForm() #se não conrresponder ao método POST, exibe o formulário vazio e a mensagem de erro.
-    # Renderiza o template 'produto.html' com o contexto que contém o formulário
-    # para exibir na página.
+        # Renderiza o template 'produto.html' com o contexto que contém o formulário
+        # para exibir na página.
     context = {
-        'form': form
+       'form': form
     }
     return render(request, 'produto.html', context)
-
+    
